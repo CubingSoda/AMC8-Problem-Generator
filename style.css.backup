@@ -1,0 +1,501 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+html {
+  text-align: center;
+  /* font-family: helvetica; */
+  font-family: "Roboto", sans-serif;
+}
+html {
+  /* I think a white background is better */
+  /* background: url("https://artofproblemsolving.com/assets/images/top/pattern-online-gray.png")!important; */
+  /* background-color: white;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; */ 
+  /* @above is really not needed just for a white background ~seals */
+}
+/*::selection{
+  background-color: #79ffe1;
+  color:black !important;
+}*/
+button,
+input {
+  outline: none;
+}
+
+#bluebutton {
+  padding-top: 600;
+  font-weight: bolder;
+  background-color: rgb(27, 54, 93);
+  color: white;
+  width: 240px;
+  height: 85px;
+  font-size: 42px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+#bluebutton:hover {
+  transition: 0s ease;
+  background-color: #0b5b7c;
+}
+
+#title {
+  font-size: 70px;
+  font-weight: 700;
+}
+
+#subtitle {
+  font-weight: 500;
+}
+.nextbtn {
+  padding: 10px;
+  align-self: center;
+  float: left;
+  background-color: rgb(27, 54, 93);
+  color: white;
+  width: 150px;
+  height: 41px;
+  font-size: 15px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.nextbtn:hover {
+  transition: 0s ease;
+  background-color: #0b5b7c;
+}
+#subanswer,
+#giveup {
+  float: left;
+  background-color: rgb(27, 54, 93);
+  color: white;
+  width: 100px;
+  height: 36px;
+  font-size: 15px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+#subanswer:hover,
+#giveup:hover {
+  transition: 0s ease;
+  background-color: #0b5b7c;
+}
+#submitanswer {
+  margin-right: 5px;
+  margin-left: 31%;
+  float: left;
+  height: 36px;
+  width: 30vw;
+  padding: 5px;
+  border: 1px solid black;
+}
+#subanswer:disabled,
+#giveup:disabled {
+  background-color: #0b5b7c;
+  opacity: 0.8;
+}
+#problem_text {
+  text-align: center;
+  padding: 100px;
+}
+
+.latex {
+  display: inline-block;
+}
+
+.latexcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-auto{
+  @apply mx-auto;
+}
+
+#problem_text > img {
+  margin: auto;
+}
+/*#problem_select > img{
+
+   margin:auto;
+ }*/
+.coice > img {
+  float: left;
+  margin: auto;
+}
+/* div.score > div>div>img{
+  margin-left: 35vw;
+  height:400px;
+} */
+#problem_select {
+  font-size: 24px;
+  /*float:left;*/
+  text-align: center;
+}
+
+.cii {
+  position: absolute;
+  top: 0;
+  background: url("https://artofproblemsolving.com/assets/images/top/pattern-online-gray.png") !important;
+  background-position: fixed;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+}
+#correct_banner {
+  text-align: left;
+  background-color: #1496d8;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+.correct_subject {
+  text-align: left;
+  background-color: #1b365d;
+  padding: 18px;
+  color: white;
+  font-size: 16px;
+}
+#prob_c,
+#prob_ci,
+#incorrect_problem {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+#correct_banneri {
+  text-align: left;
+  background-color: #3da000;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+#incorrect_banner {
+  text-align: left;
+  background-color: #ef7f00;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+#giveup {
+  margin-left: 10px;
+}
+#giveup_banner {
+  text-align: left;
+  background-color: #e2002b;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+.cii > div > div > div > img {
+  margin: auto;
+}
+/* img {
+	max-width: 70% !important;
+} */
+/*For the status thing*/
+.mordal {
+  text-align: center;
+  position: absolute;
+  /* Stay in place */
+  z-index: 50;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: hidden;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.75);
+  /* Fallback color */
+}
+
+#piechart {
+  margin-left: 40%;
+  margin-top: 50px;
+  display: block;
+  position: absolute;
+  width: 400px;
+  height: 400px !important;
+  border-radius: 100%;
+  background-image: conic-gradient(rgba(139, 139, 139, 0.5) 0 100%);
+  cursor: pointer;
+}
+#status-modal {
+  position: fixed;
+}
+#piechart {
+  box-shadow: 0px 0px 45px #b3b3b3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.stats {
+  font-size: 24px;
+  display: block;
+}
+
+#infoicon {
+  position: absolute;
+  left: 97vw;
+  cursor: pointer;
+}
+
+.close {
+  color: red;
+  position: absolute;
+  right: 0;
+  font-size: 48px;
+  width: 55px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: white;
+  background-color: rgba(128, 128, 128, 0.822);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#problem_frame img {
+  max-width: 50% !important;
+}
+
+#problem_text .latex:last-child {
+	display: block;
+}
+
+/**  POPUPS  **/
+
+#screen-mask {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 5;
+}
+
+#popup-modal {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    background-color: #fff;
+    padding: 10px 30px;
+    border-radius: 0.2em;
+
+    min-width: 10%;
+}
+
+#popup-modal p {
+    color: black;
+}
+
+#popup-modal button {
+    font-weight: bolder;
+    background-color: rgb(27, 54, 93);
+    color: white;
+    transition: 0.5s ease;
+    cursor: pointer;
+    border: none;
+    height: 24px;
+    font-size: 14px;
+    padding: 0 5px;
+    float: right;
+    margin: 0 3px;
+    margin-top: 5px;
+    border-radius: 0px;
+}
+#popup-modal button:hover {
+    transition: 0s ease;
+    background-color: #0b5b7c;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  /* margin: 0.75rem; */
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  /* height: 100px; */
+  border-top: 1px solid #eaeaea;
+}
+
+footer a {
+  @apply text-blue-600;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    flex-direction: row;
+    height: 100%;
+  }
+}
+
+/* main {
+  min-height: calc(100vh - 100px);
+} */
+
+@media (max-width: 700px) {
+  main {
+    min-height: 100vh;
+  }
+}
+#sub {
+  display: none;
+}
+
+.credit-image {
+  display: inline-block;
+  /* height:70px;
+  width:80px; */
+}
+
+.foresterimage {
+  padding-bottom: 5px;
+}
+/* #problem_select > img{
+  display:inline-block;
+  vertical-align:top;
+  width:100px;
+  padding:20px;
+}
+.coice >img{
+  display:inline-block;
+  vertical-align:top;
+} */
+.cii {
+  position: fixed;
+}
+
+
+#main title{
+  font-family: Helvetica;
+}
+
+#piechart{
+  padding-left: 1000;
+}
+
+/* Center problem images
+#problem_text * img {
+  @apply mx-auto;
+} */
+
+.spacer {
+  @apply flex-1;
+}
+/*.latex:last-of-type{
+  display:inline-block;
+  clear:both;
+  width:100vw !important;
+}*/
+#cookiejar{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position:absolute;
+  background-color: #f6f6f6;
+  border:1px solid black;
+  /* width:95vw; */
+  width: 20vw;
+  left:2.5vw;
+  padding:20px;
+  /* bottom:0; */
+  top: 30vh; /* 90vh; */
+  min-height: 20vh;
+  border-radius: 7px;
+  opacity:1;
+  z-index:100;
+  transition:0.4s;
+}
+#cookieaccept {
+  background-color: #555;
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 7px;
+  outline: none;
+  transition: 0.5s;
+  width: 6rem;
+}
+#cookieaccept:hover{
+  opacity:0.8;
+  transition:0.5s;
+}
+
+@media (max-width: 700px) {
+  #cookiejar {
+    width: 90vw;
+  }
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+.forminput{
+  border:none;
+  border-bottom: 2px solid darkgray;
+  transition: 0.2s;
+  width:40px;
+  margin-left:10px;
+  text-align:center;
+}
+.forminput:focus, .forminput:active{
+  outline: none;
+  border-bottom: 2px solid green;
+  transition: 0.2s;
+}
+
+#reportbug_header {
+  font-weight:bolder;
+  font-size:36px;
+  display: inline;
+}
+
+.closebug {
+  color: red;
+  font-size: 48px;
+  width: 55px;
+  cursor: pointer;
+  float: right;
+  text-align: center;
+}
+
+.closebug:hover {
+  color: white;
+  background-color: rgba(128, 128, 128, 0.822);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+
+#report-submit:hover{
+  cursor: pointer;
+}
+@keyframes zoom{
+ from{transform:scale(0);} 
+ to{transform:scale(1)}
+}
+#report_frame{
+  animation:zoom 1s;
+}

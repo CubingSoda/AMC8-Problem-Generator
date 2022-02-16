@@ -1,0 +1,24 @@
+{
+  "name": "amc-8-problem-generator",
+  "version": "0.0.0",
+  "description": "AMC 8 Problem Generator",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "minify:problems": "uglifyjs --compress --mangle --comments --comments '/(^!|@license|@preserve)/' -o dist/problems.js -- problems.js",
+    "minify:styles": "uglifycss style.css > dist/style.css",
+    "minify:script": "uglifyjs --compress --mangle --comments --comments '/(^!|@license|@preserve)/' -o dist/script.js -- script.js"
+  },
+  "keywords": [
+    "amc",
+    "amc8",
+    "problem",
+    "generator"
+  ],
+  "author": "forester2015, AndrewC10, player01, sealsrock",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "uglify-js": "^3.13.2",
+    "uglifycss": "0.0.29"
+  }
+}

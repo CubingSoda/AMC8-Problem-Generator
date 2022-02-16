@@ -1,0 +1,5 @@
+#!/bin/bash
+
+npm run minify:problems
+npm run minify:styles
+npm run minify:script

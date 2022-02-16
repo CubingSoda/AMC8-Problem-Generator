@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--  MathJax  -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta
+      name="description"
+      content="Generates random problems from the AMC 8 competitions by MAA and gives two chances to answer them."
+    />
+    <meta name="image" content="/icon-512x512.png" />
+    <meta name="og:image" content="/icon-512x512.png" />
+    <meta name="og:title" content="AMC 8 Problem Generator" />
+    <meta
+      name="og:description"
+      content="A free software that generates random problems from the AMC 8 competitions by MAA and gives two chances to answer them."
+    />
+    <meta http-equiv="X-Frame-Options" content="deny" />
+
+    <title>AMC 8 Problem Generator</title>
+    <link
+      href="/dist/style.css"
+      rel="stylesheet"
+      id="main_style"
+      type="text/css"
+    />
+
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- <script src="./problems.js"></script> -->
+    <script defer id="problems_script" src="/dist/problems.js"></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Lodash -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js" integrity="sha256-qXBd/EfAdjOA2FGrGAG+b3YBn2tn5A6bhz+LSgYD96k=" crossorigin="anonymous"></script> -->
+
+    <!-- PWA registration -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+      }
+    </script>
+
+    <!-- Uncomment if technical difficulties -->
+    <script>
+      /* function popup(texter) {
+          mask = document.createElement("DIV");
+          mask.setAttribute("style", "top: 0;position: fixed;width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.4);z-index: 5;");
+          text = document.createElement("DIV");
+          text.setAttribute("style", "display:block;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;background-color:#fff;padding:10px 30px;border-radius:.2em;min-width:10%;");
+          ptag = document.createElement("P");
+          node = document.createTextNode(texter);
+          ptag.appendChild(node);
+          text.appendChild(ptag);
+          document.body.appendChild(mask);
+          document.body.appendChild(text);
+        }
+       */
+
+      /*$(function () {
+         alert("We are eformatcureformatreneformattly having technical difficulties\nPlease stand by");
+       });*/
+    </script>
+  </head>
+
+  <body>
+    <noscript
+      ><strong>You need to enable JavaScript to run this app.</strong></noscript
+    >
+    <div class="flex flex-col min-h-screen">
+      <main class="flex-1">
+        <div id="homescreen">
+          <br />
+          <h1 class="text-4xl">AMC 8 Problem Generator</h1>
+          <br />
+          <!-- <h3 id="subtitle" class="text-3xl pb-3">
+            Problem Generator Made by:
+          </h3> -->
+          <hr />
+          <section class="flex flex-row gap-8 justify-center m-3">
+            <div class="flex flex-col gap-8 justify-center">
+              <img
+                src="https://avatar.artofproblemsolving.com/avatar_546163.png"
+                alt="forester avatar"
+                class="ml-auto mr-auto foresterimage"
+              />
+              <a
+                href="https://artofproblemsolving.com/community/user/546163"
+                target="_blank"
+                class="text-center"
+                rel="noreferrer"
+                >forester2015</a
+              >
+            </div>
+            <div class="flex flex-col gap-8 justify-center">
+              <img
+                src="https://avatar.artofproblemsolving.com/avatar_499928.png"
+                alt="AndrewC10 avatar"
+                class="ml-auto mr-auto credit-image"
+              />
+              <a
+                href="https://artofproblemsolving.com/community/user/499928"
+                target="_blank"
+                class="text-center"
+                rel="noreferrer"
+                >AndrewC10</a
+              >
+            </div>
+            <div class="flex flex-col gap-8 justify-center">
+              <img
+                src="https://avatar.artofproblemsolving.com/avatar_364963.png"
+                alt="sealsrock avatar"
+                class="ml-auto mr-auto credit-image"
+              />
+              <a
+                href="https://artofproblemsolving.com/community/user/364963"
+                target="_blank"
+                class="text-center"
+                rel="noreferrer"
+                >sealsrock</a
+              >
+            </div>
+
+            <div class="flex flex-col gap-8 justify-center">
+              <img
+                src="https://avatar.artofproblemsolving.com/avatar_501638.png?t=1614056694"
+                alt="player01 avatar"
+                class="ml-auto mr-auto credit-image"
+              />
+              <a
+                href="https://artofproblemsolving.com/community/user/player01"
+                target="_blank"
+                class="text-center"
+                rel="noreferrer"
+                >player01</a
+              >
+            </div>
+          </section>
+          <hr />
+          <p class="pt-3">
+            To answer the problem, type the letter of the option you want to
+            pick. The system accepts both lower case and upper case.
+          </p>
+          <p class="pb-3">
+            The Source Code is
+            <a
+              href="https://replit.com/@crazyCoder1123/AMC-8-Problem-Generator"
+              class="text-blue-600"
+              target="_blank"
+              >here</a
+            >. The website and its source code are not open-source and are both
+            subject to the terms in
+            <a href="/LICENSE.txt" class="text-blue-600" target="_blank"
+              >LICENSE</a
+            >.
+          </p>
+          <b
+            ><p>
+              There is a minute cooldown for every 2 bug reports. Please do not
+              spam them. We check them regularly.
+            </p></b
+          >
+          <p>
+            The website is currently not mobile-optimized, expect rendering
+            issues on mobile devices.
+          </p>
+          <p>
+            Read the
+            <span
+              onclick="$('#faq_modal').show()"
+              class="text-blue-600 cursor-pointer"
+              >FAQ</span
+            >.
+          </p>
+          <p>
+            <button id="bluebutton" class="mt-5">PLAY</button>
+          </p>
+        </div>
+
+        <div class="mordal" id="faq_modal" class="hidden" style="display: none">
+          <span class="closebug" onclick="$('#faq_modal').hide()">&times;</span>
+          <div class="modal-content" id="faq_content">
+            <h1>FAQ</h1>
+            <hr />
+            <button class="accordion" style="outline: none">
+              "STOP tracking people's IPs"- Anonymous user.
+            </button>
+            <div class="panel">
+              We do not track ip's. Replit doesn't let us see IPs to prevent IP
+              grabbers. We do not track anything, for that matter. <br />We
+              tried tracking IPs in the API system to stop people from abusing
+              the bug reports, but it failed because replit masks the IPs. Also,
+              why would knowing your location be useful to us?
+            </div>
+
+            <button class="accordion" style="outline: none">
+              The give up button doesn't work
+            </button>
+            <div class="panel">
+              Like AoPS Alcumus, you have to try the question and get it wrong
+              for you to click the give up.
+            </div>
+
+            <button class="accordion" style="outline: none">
+              There is no close button for a popup.
+            </button>
+            <div class="panel">
+              Close buttons for popups (like this one) are usually on the edge
+              of the screen. This one is in the top-right corner of the screen.
+              We do this to reduce clutter in the actual popup, although some,
+              like the report error popup, have space.
+            </div>
+
+            <button class="accordion" style="outline: none">
+              i hope you didnt screenshot every single problem, if you did that
+              was foolish because you can just webscrape all the problems
+            </button>
+            <div class="panel">
+              We copy/pasted the HTML for the problems from the AoPS Wiki (not
+              screenshot), because you are not allowed to webscrape AoPS
+              according to many SS threads responded to by AoPS site admins.
+            </div>
+          </div>
+        </div>
+        <div id="problem_frame">
+          <div id="problem pb-5">
+            <img
+              src="https://cdn.iconscout.com/icon/free/png-256/pie-chart-1213-1116313.png"
+              style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 40px;
+                cursor: pointer;
+                z-index: 19;
+              "
+              onclick="status()"
+              title="Click this for your stats!"
+            />
+            <button
+              id="savecookie"
+              style="
+                position: absolute;
+                top: 0;
+                left: 50px;
+                height: 40px;
+                cursor: pointer;
+              "
+            >
+              Save
+            </button>
+            <div id="problem_text" style="display: block; clear: both"></div>
+            <div id="problem_select" style="display: block; clear: both"></div>
+          </div>
+
+          <div id="sub">
+            <input
+              id="submitanswer"
+              type="text"
+              placeholder="Enter Your Answer"
+              autofocus
+            />
+            <button id="subanswer" onclick="check_answer()">Submit</button>
+            <button id="giveup" onclick="giveup()" disabled>Give Up</button>
+            <button
+              id="error"
+              onclick="$('#report_frame').show();$('#report_prob').val(problemnum+1);$('#report_year').val(year);$('#report_moreinfo').val('')"
+              style="
+                text-decoration: underline;
+                color: blue;
+                font-weight: bolder;
+              "
+            >
+              Report Error
+            </button>
+          </div>
+          <div
+            class="mordal"
+            id="report_frame"
+            style="display: none; text-align: left !important"
+          >
+            <span
+              class="error"
+              id="cheatnotice"
+              style="
+                position: absolute;
+                top: 20px;
+                margin: 0;
+                margin-left: 12.5vw;
+              "
+              >Hi! You know we only show the year and problem number for
+              debugging purposes. There is nothing stopping you from searching
+              it up, but think. How will this do you any good if you want to
+              train?<br /><button
+                style="
+                  background-color: lightgray;
+                  padding: 5px;
+                  color: black;
+                  border-radius: 2px;
+                  text-align: center;
+                "
+                onclick="document.cookie='dismisscheat=yes; expires=Tue, 31 Dec 2030 12:00:00 UTC; path=/';$('#cheatnotice').remove()"
+              >
+                Dismiss
+              </button></span
+            >
+            <div class="modal-content">
+              <form
+                id="report_error"
+                action="https://api.amc8.toad39.dev/bugreport"
+              >
+                <span class="closebug" onclick="$('#report_frame').hide()"
+                  >&times;</span
+                >
+                <h1 id="reportbug_header">Submit a Bug Report</h1>
+                <p>
+                  Thank you for finding an error in our program. Please add
+                  further details in the box below. If you want a response to
+                  your bug report, please send your AoPS username, and we will
+                  PM you.
+                </p>
+                <hr class="my-3" />
+                <b
+                  ><p>
+                    Error reported on problem
+                    <input
+                      id="report_prob"
+                      class="forminput"
+                      name="prob"
+                      required
+                    />
+                    of the year
+                    <input
+                      id="report_year"
+                      name="year"
+                      class="forminput"
+                      required
+                    /></p
+                ></b>
+                <br />
+                <textarea
+                  name="moreinfo"
+                  id="report_moreinfo"
+                  class="forminput"
+                  style="width: 47vw; height: auto"
+                  placeholder="Add further details here..."
+                  required
+                ></textarea>
+                <input type="submit" id="report-submit" onclick="cookie()" />
+              </form>
+            </div>
+          </div>
+          <div
+            id="probcurrent"
+            style="
+              background-color: #f6f6f6;
+              position: absolute;
+              right: 0;
+              margin-right: 10px;
+              top: 5px;
+              padding: 5px;
+              color: gray;
+              border: 1.5px black solid;
+              border-radius: 5px;
+            "
+          >
+            <p>
+              You have done<br />
+              <span
+                id="probsdone"
+                style="font-size: 36px; font-weight: bolder; color: black"
+              >
+                0 </span
+              ><br />
+              problems today
+            </p>
+          </div>
+          <div class="cii" id="correct" style="display: none">
+            <div id="correct_content" class="score">
+              <div class="correct_subject">
+                <b
+                  >AMC 8 <span id="correct_year"></span> Problem
+                  <span id="correct_prob"></span
+                ></b>
+              </div>
+              <div id="correct_banner"><b>Correct! Way to go!</b></div>
+              <br />
+              <div id="prob_c">
+                <div id="correct_problem"></div>
+                <div id="correct_choices"></div>
+                <br /><br />
+                <i>Your Answer:</i>
+                <b><span id="youranswer_c" style="color: #1496d8"></span></b
+                ><br /><br />
+                <a id="correct_wiki" href="#" target="_blank" rel="noreferrer"
+                  ><button class="nextbtn" style="margin-left: 37vw">
+                    See Wiki Solution
+                  </button></a
+                ><button
+                  class="nextbtn"
+                  style="margin-left: 10px"
+                  onclick="random_prob();$('#correct').css('display', 'none')"
+                >
+                  Next Problem
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cii" id="correct_incorrect" style="display: none">
+            <div id="correctin_content" class="score">
+              <div class="correct_subject">
+                <b
+                  >AMC 8 <span id="correct_yeari"></span> Problem
+                  <span id="correct_probi"></span
+                ></b>
+              </div>
+              <div id="correct_banneri"><b>Correct! Way to go!</b></div>
+              <br />
+              <div id="prob_ci">
+                <div id="correctin_problemi"></div>
+                <div id="correctin_choicesi" class="coice"></div>
+                <br /><br />
+                <i>First Answer:</i>
+                <b><span id="youranswer_ci" style="color: #ef7f00"></span></b
+                ><br />
+                <i>Second Answer: </i>
+                <b><span id="youranswer_cit" style="color: #3da000"></span></b
+                ><br /><br />
+                <a id="correct_wikii" href="#" target="_blank" rel="noreferrer"
+                  ><button class="nextbtn" style="margin-left: 37vw">
+                    See Wiki Solution
+                  </button></a
+                ><button
+                  class="nextbtn"
+                  style="margin-left: 10px"
+                  onclick="random_prob();$('#correct_incorrect').css('display', 'none')"
+                >
+                  Next Problem
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="cii" id="incorrect" style="display: none">
+            <div id="incorrect_content" class="score">
+              <div class="correct_subject">
+                <b
+                  >AMC 8 <span id="incorrect_year"></span> Problem
+                  <span id="incorrect_prob"></span
+                ></b>
+              </div>
+              <div id="incorrect_banner"><b>Incorrect. Oops!</b></div>
+              <br />
+              <div id="incorrect_prob">
+                <div id="incorrect_problem"></div>
+                <div id="incorrect_choice" class="coice"></div>
+                <br /><br />
+                <i>First Answer: </i>
+                <b
+                  ><span
+                    id="incorrect_problem_choice_one"
+                    style="color: #ef7f00"
+                  ></span
+                ></b>
+                <br />
+                <i>Second Answer: </i
+                ><b
+                  ><span
+                    id="incorrect_problem_choice_two"
+                    style="color: #ef7f00"
+                  ></span></b
+                ><br />
+                <i>Correct Answer:</i>
+                <b><span id="incorrect_correct_answer"></span></b><br /><br />
+                <a id="incorrect_wiki" href="#" target="_blank"
+                  ><button class="nextbtn" style="margin-left: 42vw">
+                    See Wiki Solution
+                  </button></a
+                ><button
+                  class="nextbtn"
+                  style="margin-left: 10px"
+                  onclick="random_prob();$('#incorrect').css('display', 'none')"
+                >
+                  Next Problem
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="cii" id="giveup_modal" style="display: none">
+            <div id="giveup_content" class="score">
+              <div class="correct_subject">
+                <b
+                  >AMC 8 <span id="giveup_year"></span> Problem
+                  <span id="giveup_prob"></span
+                ></b>
+              </div>
+              <div id="giveup_banner"><b>You gave up on this problem</b></div>
+              <br />
+              <div id="giveup_prob">
+                <div id="giveup_problem"></div>
+                <div id="giveup_choice" class="coice"></div>
+                <br /><br />
+                <i>First Answer: </i>
+                <b
+                  ><span
+                    id="giveup_problem_choice"
+                    style="color: #ef7f00"
+                  ></span
+                ></b>
+                <br />
+                <i>Second Answer: </i
+                ><b><span style="color: #e2002b">Give Up</span></b
+                ><br />
+                <i>Correct Answer:</i>
+                <b><span id="giveup_correct_answer"></span></b><br /><br />
+                <a id="giveup_wiki" href="#" target="_blank"
+                  ><button class="nextbtn" style="margin-left: 42vw">
+                    See Wiki Solution
+                  </button></a
+                ><button
+                  class="nextbtn"
+                  style="margin-left: 10px"
+                  onclick="random_prob();$('#giveup_modal').css('display', 'none')"
+                >
+                  Next Problem
+                </button>
+              </div>
+            </div>
+          </div>
+          <!--Status-->
+          <div id="status-modal" class="mordal" style="display: none">
+            <span
+              class="close"
+              onclick="document.getElementById('status-modal').style.display='none';"
+              >&times;</span
+            >
+            <h1 style="color: white; font-size: 48px; font-weight: bolder">
+              Pie Chart Stats
+            </h1>
+            <h6 style="color: darkgray; font-size: 18px; font-weight: bolder">
+              Powered by PieChart.html by AndrewC10
+            </h6>
+            <p style="color: white; font-weight: bolder">
+              If this piechart not working. (it happens) then press this button
+              to reset your cookie which may fix it:
+              <button
+                click="correct_rate=0;wrong_rate=0;giveups=0;status()cookie()"
+              >
+                Click to maybe fix
+              </button>
+              After you click that, exit this modal and click "save" and refresh
+            </p>
+            <div id="piechart" style="height: 100px"></div>
+            <strong>
+              <p
+                id="correct_stats"
+                class="stats"
+                style="color: lime; margin-top: 500px"
+              ></p>
+            </strong>
+            <strong>
+              <p id="wrong_stats" class="stats" style="color: darkorange"></p>
+            </strong>
+            <strong>
+              <p
+                id="giveups_stats"
+                class="stats"
+                style="color: rgb(255, 55, 55)"
+              ></p>
+            </strong>
+          </div>
+          <!--Status End-->
+          <div></div>
+        </div>
+        <div id="cookiejar">
+          <div id="cookielabel">
+            This site uses cookies to enhance your experience, mainly to store
+            information about your progress. We do not use it for analytics or
+            advertising services.
+            <span onclick="$('#cp').show()" class="text-blue-600"
+              >Learn More</span
+            >
+          </div>
+          <button
+            id="cookieaccept"
+            onclick="$('#cookiejar').css('opacity', '0.0');document.cookie = 'clicked=yes; expires=Thu, 1 Jan 2026 12:00:00 UTC; path=/;';$('#cp').css('opacity', '0.0')"
+          >
+            Got It!
+          </button>
+        </div>
+        <div
+          id="cp"
+          class="mordal"
+          style="text-align: left !important; display: none"
+        >
+          <div class="modal-content" style="margin: 8% auto !important">
+            <h2
+              style="font-size: 36px; font-weight: bolder; text-align: center"
+            >
+              Cookie Policy
+            </h2>
+            <h3 style="font-size: 24px; font-weight: bold">
+              What are cookies?
+            </h3>
+            <p>
+              Cookies are small pieces of data stored on one's computer by a web
+              browser, which will be retrived for later use. Examples of this
+              may include keeing a user logged in, saving changed preferences
+              and game scores. There are two types of cookies, persistent
+              cookies and session cookies. Session cookies expire, or are
+              deleted, when you close the tab containing the cookie. Persistent
+              cookies on the other hand don't expire that easily. They will
+              still be preserved after you close your browser or restart your
+              computer. Cookies can be set and stored by the same website. This
+              is called a first-party cookie. A cookie set from a different
+              website on a page is called a third party cookie. For example, say
+              a user visits
+              <span class="website">https://www.example.com</span> which
+              conatins an ad from
+              <span class="website">https://lovesadvertising.com</span>. When
+              downloaded, the ad with procede to set a cookie on that website.
+              Then, if that same user goes onto another website, say
+              <span class="website">https://foo.com</span> which also contains
+              an ad from
+              <span class="website">https://lovesadvertising.com</span>, the ad
+              will once again set a cookie. Eventually, both cookies will be
+              sent to <span class="website">https://lovesadvertising.com</span>,
+              where people can build a browsing history, which they can use to
+              target you for ads on certain websites you will most likly visit.
+              There is also this intresting concept of ZombieCookies, or
+              evercookies, where a javascript code detects if a cookie has been
+              deleted, and recreates the cookie, thus a zombie :P See
+              <a
+                href="https://en.wikipedia.org/wiki/HTTP_cookie"
+                style="color: #1184d6"
+                target="_blank"
+                >here</a
+              >
+              for more details about cookies.
+            </p>
+            <h3 style="font-size: 24px; font-weight: bold">
+              What types of cookies do we use?
+            </h3>
+            <p>
+              On our site we use
+              <span class="website">functionality cookies</span>. Functionality
+              cookies allow us to save your preferences and game scores.
+              Currently on this site, we use only two cookies. The first cookie
+              is used to save your score in the game. The second is for
+              detecting if you have clicked that "Got It" button on the right so
+              that you won't be bothered on future visits.
+            </p>
+            <h3 style="font-size: 24px; font-weight: bold">Contact Us</h3>
+            <p>
+              To contact us, please use the
+              <a href="https://aops.com" target="_blank" style="color: #1184d6"
+                >Art of Problem Solving Site</a
+              >
+              and private message
+              <span class="website"
+                >AndrewC10, Sealsrock, Player01, or Forester2015</span
+              >
+            </p>
+          </div>
+        </div>
+      </main>
+      <!-- <footer class="p-5">
+        <p>
+          The problems on this page are copyrighted by the
+          <a href="http://www.maa.org">Mathematical Association of America</a>'s
+          <a href="http://amc.maa.org" target="_blank"
+            >American Mathematics Competitions (MAA)</a
+          >
+        </p>
+        <p class="text-medium text-center">
+          Copyright &copy; 2021 forester2015, AndrewC10, player01, and sealsrock
+        </p>
+      </footer> -->
+      <footer class="mt-5">
+        <!-- class="footer" -->
+        <span>
+          Problems &copy;
+          <a href="http://www.maa.org" class="text-blue-600" rel="noreferrer">
+            Mathematical Association of America
+          </a>
+          's
+          <a href="http://amc.maa.org" target="_blank" rel="noreferrer">
+            American Mathematics Competitions (AMC)
+          </a>
+        </span>
+        <span>
+          Solutions and images from
+          <i>The Art of Problem Solving</i>
+          <a href="https://aops.com/wiki">Wiki.</a>
+        </span>
+        <span>
+          Copyright &copy; 2021 forester2015, AndrewC10, player01, sealsrock
+        </span>
+      </footer>
+    </div>
+    <!-- Popup after incorrect -->
+    <div id="screen-mask" style="display: none"></div>
+
+    <div id="popup-modal" style="display: none">
+      <p></p>
+      <button>OK</button>
+    </div>
+    <script id="main_script" src="/dist/script.js"></script>
+    <script src="/environment.js"></script>
+  </body>
+</html>
